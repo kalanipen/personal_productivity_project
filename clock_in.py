@@ -17,12 +17,13 @@ todays_date = datetime.datetime.now()
 def clock_in():
     current_time = time.time() #get first timestamp 
     time_display_area.delete(0,2)
-    time_display_area.insert(tk.END, f'clocked in at {current_time}')
+    time_display_area.insert('0', f'clocked in at {current_time}')
     
 
 def clock_out(): 
     current_time = time.time() #get second timestamp 
-    time_display_area.insert(tk.END, f'clocked out at {current_time}')
+    time_display_area.delete(1,3)
+    time_display_area.insert('2', f'clocked out at {current_time}')
     calc_time() #run the calc for the elapsed time between last in/outs
 
 
@@ -81,7 +82,7 @@ def view_labor():
     final_wage_total = (total_hours_pre + total_mins_pre) * hourly_wage
 
     #update the app box with the currenty total report
-    time_display_area.delete(0,3)
+    
     time_display_area.insert(tk.END, f'you have worked a total of {total_hours_pre + total_mins_pre} and made' +
                              f'{final_wage_total} dollars')
     
@@ -95,7 +96,7 @@ clock_in_button.pack()
 clock_out_button = tk.Button(root, text='Clock out',command=clock_out)
 clock_out_button.pack(pady=10)
 
-time_display_area = tk.Listbox(root,width=60,height=30) #text box display declaration
+time_display_area = tk.Listbox(root,width=30,height=10) #text box display declaration
 time_display_area.pack(pady=10)
 
 #buttons for self labor report 
